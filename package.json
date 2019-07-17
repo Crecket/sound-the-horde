@@ -28,6 +28,7 @@
         "@material-ui/lab": "^4.0.0-alpha.19",
         "awaiting": "^3.0.0",
         "classnames": "^2.2.6",
+        "esijs": "^2.1.2",
         "http-server": "^0.11.1",
         "json-store": "^1.0.0",
         "loadable-components": "2.2.3",

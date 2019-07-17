@@ -103,6 +103,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+let esiJS = require("esijs");
+
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -113,6 +115,18 @@ export default function Dashboard() {
         setOpen(false);
     };
     const fixedHeightPaper = classnames(classes.paper, classes.fixedHeight);
+
+    React.useEffect(() => {
+        esiJS.universe.systems
+            .systems()
+            .then(systemIds => {
+                esiJS.universe.bulk
+                    .idsToNames(systemIds)
+                    .then(console.log)
+                    .catch(console.error);
+            })
+            .catch(console.error);
+    });
 
     return (
         <div className={classes.root}>
