@@ -103,7 +103,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let esiJS = require("esijs");
+const esiJS = require("esijs");
+const EVEoj = require("EVEoj");
+const SDD = EVEoj.SDD.Create("json", { path: "//cf.eve-oj.com/sdd/" + ver });
 
 export default function Dashboard() {
     const classes = useStyles();
@@ -117,15 +119,16 @@ export default function Dashboard() {
     const fixedHeightPaper = classnames(classes.paper, classes.fixedHeight);
 
     React.useEffect(() => {
-        esiJS.universe.systems
-            .systems()
-            .then(systemIds => {
-                esiJS.universe.bulk
-                    .idsToNames(systemIds)
-                    .then(console.log)
-                    .catch(console.error);
-            })
-            .catch(console.error);
+        // esiJS.universe.systems
+        //     .systems()
+        //     .then(systemIds => {
+        //         console.log(systemIds);
+        //         // esiJS.universe.bulk
+        //         //     .idsToNames(systemIds)
+        //         //     .then(console.log)
+        //         //     .catch(console.error);
+        //     })
+        //     .catch(console.error);
     });
 
     return (
@@ -152,6 +155,7 @@ export default function Dashboard() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+
             <Drawer
                 variant="permanent"
                 classes={{
@@ -169,10 +173,17 @@ export default function Dashboard() {
                 <Divider />
                 <List>{secondaryListItems}</List>
             </Drawer>
+
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={3}>
+                        <Grid item xs={12} md={4} lg={3}>
+                            <Paper className={fixedHeightPaper}>
+                                <Deposits />
+                            </Paper>
+                        </Grid>
+
                         <Grid item xs={12} md={4} lg={3}>
                             <Paper className={fixedHeightPaper}>
                                 <Deposits />

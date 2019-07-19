@@ -12,6 +12,7 @@
         "prettier": "./node_modules/.bin/prettier --tab-width 4 --print-width 120 --write \"+(tests|scripts|src|server)/**/**.+(js|jsx|css|scss)\""
     },
     "dependencies": {
+        "EVEoj": "^0.3.1",
         "axios": "^0.19.0",
         "dotenv": "^6.2.0"
     },
